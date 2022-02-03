@@ -50,7 +50,7 @@
                 <outlet property="meridiemLabel" destination="dJP-UU-8jC" id="dNj-fo-BM7"/>
                 <outlet property="timeLabel" destination="reW-NF-6Zz" id="qPv-DV-ntu"/>
             </connections>
-            <point key="canvasLocation" x="139" y="110"/>
+            <point key="canvasLocation" x="138.40579710144928" y="109.82142857142857"/>
         </tableViewCell>
     </objects>
 </document>
