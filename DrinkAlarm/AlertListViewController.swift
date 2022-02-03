@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import UserNotifications
 
 class AlertListViewController: UITableViewController {
     
     var alerts: [Alert] = []
+    //><
+    let userNotificationCenter = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,7 @@ class AlertListViewController: UITableViewController {
             self.alerts = alertList
             
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
+            self.userNotificationCenter.addNotificationRequest(by: newAlert)
             
             print("정보 가져왔다~")
             self.tableView.reloadData()
@@ -96,6 +100,7 @@ extension AlertListViewController {
             guard let data = UserDefaults.standard.value(forKey: "alerts") as? Data,
                   let alerts = try? PropertyListDecoder().decode([Alert].self, from: data) else { return }
             self.alerts = alerts
+            userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [self.alerts[indexPath.row].id])
             self.alerts.remove(at: indexPath.row)
             print("머선일이고")
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
@@ -121,6 +126,7 @@ extension AlertListViewController {
             alertList.sort { $0.date < $1.date }
             self.alerts = alertList
             UserDefaults.standard.set(try? PropertyListEncoder().encode(self.alerts), forKey: "alerts")
+            self.userNotificationCenter.addNotificationRequest(by: newAlert)
             self.tableView.reloadData()
         }
         self.present(addAlertVC, animated: true, completion: nil)

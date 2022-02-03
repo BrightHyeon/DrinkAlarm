@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		968F628D27ABED1A007344C8 /* UNNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F628C27ABED1A007344C8 /* UNNotificationCenter.swift */; };
 		96EA51BE27A7F35E00D551C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA51BD27A7F35E00D551C2 /* AppDelegate.swift */; };
 		96EA51C027A7F35E00D551C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA51BF27A7F35E00D551C2 /* SceneDelegate.swift */; };
 		96EA51C527A7F35E00D551C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96EA51C327A7F35E00D551C2 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		968F628C27ABED1A007344C8 /* UNNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationCenter.swift; sourceTree = "<group>"; };
 		96EA51BA27A7F35E00D551C2 /* DrinkAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EA51BD27A7F35E00D551C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96EA51BF27A7F35E00D551C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				96EA51C627A7F35F00D551C2 /* Assets.xcassets */,
 				96EA51C827A7F35F00D551C2 /* LaunchScreen.storyboard */,
 				96EA51CB27A7F35F00D551C2 /* Info.plist */,
+				968F628C27ABED1A007344C8 /* UNNotificationCenter.swift */,
 			);
 			path = DrinkAlarm;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				96EA51D527A7F5A900D551C2 /* AlertListCell.swift in Sources */,
 				96EA51D827A7F83000D551C2 /* Alert.swift in Sources */,
 				96EA51D227A7F38F00D551C2 /* AlertListViewController.swift in Sources */,
+				968F628D27ABED1A007344C8 /* UNNotificationCenter.swift in Sources */,
 				96EA51DA27A7FD4C00D551C2 /* AddAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

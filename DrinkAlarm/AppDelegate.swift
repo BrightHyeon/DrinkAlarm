@@ -6,14 +6,28 @@
 //
 
 import UIKit
+import NotificationCenter //알림 보내기용 (><)
+import UserNotifications //알림보내기위해 사용자 승인 받기위한용 (^^)
 
  @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    //^^
+    let userNotificationCenter = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        UNUserNotificationCenter.current().delegate = self //><
+        
+        //^^  권한부여옵션
+        let authorizationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
+        //^^ 설정한 옵션에 대한 승인요구 - 이게 잘 작성되어야 함. 승인을 받아야 만든 알림을 보낼 수 있는 것!
+        userNotificationCenter.requestAuthorization(options: authorizationOptions, completionHandler: { _, error in
+            if let error = error {
+                print("ERROR: notification authorization request \(error.localizedDescription)")
+            }
+        })
+        
         return true
     }
 
@@ -34,3 +48,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate { //><
+    //Notification을 보내기 전에 어떤 handling을 해줄지를 작성.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .list, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}
+
+
+/*
+
+UNNotification : NSNotification이랑은 다른 용도.
+
+1. AppDelegate에서 import NotificationCenter
+2. didFinishLaunchingWithOptions에 Delegate 선언 = self
+3. (extension으로 빼서) Delegate 프로토콜 준수
+   : willPresent 및 didReceive 함수 채택.
+ 
+* 그리고 사용자에게 로컬알림을 받으려면 먼저 사용자의 승인을 받아야함.
+
+*/
