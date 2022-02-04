@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import NotificationCenter //알림 보내기용 (><)
-import UserNotifications //알림보내기위해 사용자 승인 받기위한용 (^^)
+import NotificationCenter //>?<
+import UserNotifications //^^사용자 승인 받기 & 알림 구성
 
  @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UNUserNotificationCenter.current().delegate = self //><
+        //delegate안해도 알림은 온다. 하지만 앱이 실행되고 있는 중에도 알림 받기위해선 해줘야함. 이를 delegate선언하기 위해 프로토콜 상속해야함.
         
         //^^  권한부여옵션
         let authorizationOptions = UNAuthorizationOptions(arrayLiteral: [.alert, .badge, .sound])
@@ -49,11 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate { //><
-    //Notification을 보내기 전에 어떤 handling을 해줄지를 작성.
+    //프로토콜 상속.
+    
+    //앱이 실행 중인 상태에서도 알림 메시지가 도착하면 알림 배너에 표시되는 것과 상관없이 이 메서드가 호출이 됩니다. willPresent.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .list, .badge, .sound])
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }

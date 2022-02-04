@@ -18,10 +18,11 @@ extension UNUserNotificationCenter {
         content.badge = 1 //뱃지 사라지게 하는 코드는 따로 작성해줘야함.
         //어떤 시점에 뱃지를 사라지게 할지. -> SceneDelegate에서 고고.
         
-        //Calendar trigger 구성.
+        //알림 trigger 구성.
         let component = Calendar.current.dateComponents([.hour, .minute], from: alert.date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: alert.isOn) //스위치 on이면 매칭되는 시간에 계속 방아쇠 당기고, off면 당기지 않고.
         
+        //요청
         let request = UNNotificationRequest(identifier: alert.id, content: content, trigger: trigger)
         
         //self는 UNUserNotificationCenter를 가르킴.
@@ -30,4 +31,5 @@ extension UNUserNotificationCenter {
 }
 
 //request의 identifier, content, trigger를 구성하고, 만들어진 요청을 UNUserNotificationCenter에 추가.
-//이제 이런 로컬알림 추가함수를 알람이 만들어지는 곳, 스위치가 켜지는 곳에 각각 추가해줘야함. 
+//이제 이런 로컬알림 추가함수를 알람이 만들어지는 곳, 스위치가 켜지는 곳에 각각 추가해줘야함.
+//제디오스님 블로그 참고. 
